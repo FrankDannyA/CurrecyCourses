@@ -16,6 +16,7 @@
 		E57EF92A2770747E00593DE1 /* data.xml in Resources */ = {isa = PBXBuildFile; fileRef = E57EF9292770747E00593DE1 /* data.xml */; };
 		E57EF92C27707D6800593DE1 /* CoursesTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E57EF92B27707D6700593DE1 /* CoursesTableViewController.swift */; };
 		E57EF92E2770A94900593DE1 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E57EF92D2770A94900593DE1 /* SettingsViewController.swift */; };
+		E57EF9302770C0E800593DE1 /* ConverterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E57EF92F2770C0E800593DE1 /* ConverterViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -30,6 +31,7 @@
 		E57EF9292770747E00593DE1 /* data.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = data.xml; sourceTree = "<group>"; };
 		E57EF92B27707D6700593DE1 /* CoursesTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoursesTableViewController.swift; sourceTree = "<group>"; };
 		E57EF92D2770A94900593DE1 /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
+		E57EF92F2770C0E800593DE1 /* ConverterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConverterViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -67,6 +69,7 @@
 				E57EF92727706D2800593DE1 /* Model.swift */,
 				E57EF92B27707D6700593DE1 /* CoursesTableViewController.swift */,
 				E57EF92D2770A94900593DE1 /* SettingsViewController.swift */,
+				E57EF92F2770C0E800593DE1 /* ConverterViewController.swift */,
 				E57EF91727706B1A00593DE1 /* Main.storyboard */,
 				E57EF91C27706B1C00593DE1 /* LaunchScreen.storyboard */,
 				E57EF91A27706B1C00593DE1 /* Assets.xcassets */,
@@ -153,6 +156,7 @@
 				E57EF91427706B1A00593DE1 /* SceneDelegate.swift in Sources */,
 				E57EF92E2770A94900593DE1 /* SettingsViewController.swift in Sources */,
 				E57EF92827706D2800593DE1 /* Model.swift in Sources */,
+				E57EF9302770C0E800593DE1 /* ConverterViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
