@@ -6,15 +6,7 @@
 //
 
 import UIKit
-/*
-<Valute ID="R01010">
-    <NumCode>036</NumCode>
-    <CharCode>AUD</CharCode>
-    <Nominal>1</Nominal>
-    <Name>¿‚ÒÚ‡ÎËÈÒÍËÈ ‰ÓÎÎ‡</Name>
-    <Value>16,0102</Value>
-</Valute>
-*/
+
 class Currency {
     var numCode: String?
     var charCode: String?
@@ -28,11 +20,13 @@ class Currency {
     
 }
 
-class Model: NSObject {
+class Model: NSObject, XMLParserDelegate {
     
     static let shared = Model()
-    
-    var carrencies: [ Currency] = []
+
+    var currencies: [ Currency] = []
+    var currentCurrency: Currency?
+    var currentCharacters: String = ""
     
     var pathForXML: String {
         let path = NSSearchPathForDirectoriesInDomains(FileManager.SearchPathDirectory.libraryDirectory,
@@ -46,8 +40,8 @@ class Model: NSObject {
         }
     }
     
-    var urlForXML: URL? {
-        return nil
+    var urlForXML: URL {
+        return URL(fileURLWithPath: pathForXML)
     }
     
     //загрузка XML с cbr.ru и сохранение его в каталоге приложени
@@ -57,6 +51,60 @@ class Model: NSObject {
     
     //распарсть XML и положить его в currencies: [Currency], отправить уведомление приложению о том что данные обновились
     func parseXML(){
-        
+        let parser = XMLParser(contentsOf: urlForXML)
+        parser?.delegate = self
+        parser?.parse()
     }
+    
+    
+    func parser(_ parser: XMLParser, didStartElement elementName: String, namespaceURI: String?, qualifiedName qName: String?, attributes attributeDict: [String : String] = [:]) {
+        
+        if elementName == "Valute" {
+            currentCurrency = Currency()
+        }
+    }
+    
+    func parser(_ parser: XMLParser, foundCharacters string: String) {
+        currentCharacters = string
+    }
+    
+    func parser(_ parser: XMLParser, didEndElement elementName: String, namespaceURI: String?, qualifiedName qName: String?) {
+        if elementName == "NumCode" {
+            currentCurrency?.numCode = currentCharacters
+        }
+        
+        if elementName == "CharCode" {
+            currentCurrency?.charCode = currentCharacters
+        }
+        
+        if elementName == "Nominal" {
+            currentCurrency?.nominal = currentCharacters
+            currentCurrency?.nominalDouble = Double(currentCharacters.replacingOccurrences(of: ",", with: "."))
+        }
+        
+        if elementName == "Name" {
+            currentCurrency?.name = currentCharacters
+        }
+        
+        if elementName == "Value" {
+            currentCurrency?.value = currentCharacters
+            currentCurrency?.valueDouble = Double(currentCharacters.replacingOccurrences(of: ",", with: "."))
+        }
+        
+        if elementName == "Valute" {
+            currencies.append(currentCurrency!)
+        }
+    }
+    
+
 }
+
+/*
+<Valute ID="R01010">
+    <NumCode>036</NumCode>
+    <CharCode>AUD</CharCode>
+    <Nominal>1</Nominal>
+    <Name>¿‚ÒÚ‡ÎËÈÒÍËÈ ‰ÓÎÎ‡</Name>
+    <Value>16,0102</Value>
+</Valute>
+*/
