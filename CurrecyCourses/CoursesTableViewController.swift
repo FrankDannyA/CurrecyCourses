@@ -15,12 +15,19 @@ class CoursesTableViewController: UITableViewController {
         NotificationCenter.default.addObserver(forName: NSNotification.Name(rawValue: "dataRefreshed" ),
                                                object: nil,
                                                queue: nil) { notification in
-            self.tableView.reloadData()
-            self.navigationItem.title = "Курсы за: \(Model.shared.currentDate)"
+            DispatchQueue.main.async {
+                self.tableView.reloadData()
+                self.navigationItem.title = "Курсы за: \(Model.shared.currentDate)"
+            }
         }
         
         navigationItem.title = "Курсы за: \(Model.shared.currentDate)"
     }
+    
+    @IBAction func pushRefresh(_ sender: Any) {
+        Model.shared.loadXMLFiles(date: nil)
+    }
+    
 
     // MARK: - Table view data source
 

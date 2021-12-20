@@ -42,16 +42,17 @@
             </objects>
             <point key="canvasLocation" x="1266.6666666666667" y="525.66964285714289"/>
         </scene>
-        <!--View Controller-->
+        <!--Выберите дату-->
         <scene sceneID="Umc-Ef-YZz">
             <objects>
-                <viewController id="NaE-1D-kZr" sceneMemberID="viewController">
+                <viewController id="NaE-1D-kZr" customClass="SettingsViewController" customModule="CurrecyCourses" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="q6X-qP-u0m">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="dateAndTime" minuteInterval="1" translatesAutoresizingMaskIntoConstraints="NO" id="1XA-uU-zH6">
+                            <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="date" style="wheels" translatesAutoresizingMaskIntoConstraints="NO" id="1XA-uU-zH6">
                                 <rect key="frame" x="0.0" y="171" width="414" height="216"/>
+                                <locale key="locale" localeIdentifier="ru_RU"/>
                             </datePicker>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jSs-pj-aV4">
                                 <rect key="frame" x="20" y="447" width="374" height="60"/>
@@ -60,6 +61,9 @@
                                 </constraints>
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="gray" title="Показать курс" cornerStyle="medium"/>
+                                <connections>
+                                    <action selector="pushShowCourses:" destination="NaE-1D-kZr" eventType="touchUpInside" id="IfD-89-FcR"/>
+                                </connections>
                             </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="qMk-nl-c4o"/>
@@ -73,9 +77,16 @@
                             <constraint firstItem="1XA-uU-zH6" firstAttribute="trailing" secondItem="qMk-nl-c4o" secondAttribute="trailing" id="jrg-NV-QG5"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" id="UO1-Y7-sJ9">
-                        <barButtonItem key="leftBarButtonItem" title="Отмена" id="wVV-9K-2el"/>
+                    <navigationItem key="navigationItem" title="Выберите дату" id="UO1-Y7-sJ9" customClass="se">
+                        <barButtonItem key="leftBarButtonItem" title="Отмена" id="wVV-9K-2el">
+                            <connections>
+                                <action selector="cancelAction:" destination="NaE-1D-kZr" id="2dK-TV-fIp"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
+                    <connections>
+                        <outlet property="dataPicker" destination="1XA-uU-zH6" id="l17-Sk-WXn"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="LHb-Pc-fG4" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -126,7 +137,11 @@
                                 <segue destination="jMG-8w-AtL" kind="presentation" id="Lwo-Pp-Eym"/>
                             </connections>
                         </barButtonItem>
-                        <barButtonItem key="rightBarButtonItem" systemItem="refresh" id="6WB-fX-KbD"/>
+                        <barButtonItem key="rightBarButtonItem" systemItem="refresh" id="6WB-fX-KbD">
+                            <connections>
+                                <action selector="pushRefresh:" destination="JbD-Hw-w6X" id="PBP-4Q-16V"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="bjP-ox-F0g" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
