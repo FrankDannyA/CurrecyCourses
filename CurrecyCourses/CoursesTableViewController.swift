@@ -35,6 +35,20 @@ class CoursesTableViewController: UITableViewController {
             }
         }
         
+        NotificationCenter.default.addObserver(forName: NSNotification.Name(rawValue: "loadingXMLerror" ),
+                                               object: nil,
+                                               queue: nil) { notification in
+            _ = notification.userInfo?["ErrorName"]
+            
+            DispatchQueue.main.async {
+                self.showAlert(title: nil, message: "Error Network")
+                let barButtonItem = UIBarButtonItem(barButtonSystemItem: .refresh,
+                                                    target: self,
+                                                    action: #selector(self.pushRefresh(_:)))
+                self.navigationItem.rightBarButtonItem = barButtonItem
+            }
+        }
+        
         Model.shared.loadXMLFiles(date: nil)
         
         navigationItem.title = "Курсы за: \(Model.shared.currentDate)"
@@ -42,6 +56,13 @@ class CoursesTableViewController: UITableViewController {
     
     @IBAction func pushRefresh(_ sender: Any) {
         Model.shared.loadXMLFiles(date: nil)
+    }
+    
+    func showAlert (title: String?, message: String?) {
+        let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        let okAction = UIAlertAction(title: "OK", style: .default, handler: nil)
+        alert.addAction(okAction)
+        present(alert, animated: true, completion: nil)
     }
     
 

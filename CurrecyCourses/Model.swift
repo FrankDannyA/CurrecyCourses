@@ -18,6 +18,17 @@ class Currency {
     var value: String?
     var valueDouble: Double?
     
+    class func rouble() -> Currency {
+        let r = Currency()
+        r.charCode = "RUR"
+        r.name = "Российский рубль"
+        r.nominal = "1"
+        r.nominalDouble = 1
+        r.value = "1"
+        r.valueDouble = 1
+        return r
+    }
+    
 }
 
 class Model: NSObject, XMLParserDelegate {
@@ -28,6 +39,19 @@ class Model: NSObject, XMLParserDelegate {
     var currentCurrency: Currency?
     var currentCharacters: String = ""
     var currentDate: String = ""
+    
+    var fromCurrency: Currency? = Currency.rouble()
+    var toCurrency: Currency? = Currency.rouble()
+    
+    func convert(amount: Double?) -> String {
+        if amount == nil{
+            return ""
+        }
+        
+        let result = ((fromCurrency!.nominalDouble! * fromCurrency!.valueDouble!) / (toCurrency!.nominalDouble! * toCurrency!.valueDouble!)) * amount!
+        
+        return String(result)
+    }
     
     var pathForXML: String {
         let path = NSSearchPathForDirectoriesInDomains(FileManager.SearchPathDirectory.libraryDirectory,
@@ -41,9 +65,7 @@ class Model: NSObject, XMLParserDelegate {
         }
     }
     
-    var urlForXML: URL {
-        return URL(fileURLWithPath: pathForXML)
-    }
+    var urlForXML: URL { return URL(fileURLWithPath: pathForXML) }
     
     //загрузка XML с cbr.ru и сохранение его в каталоге приложени
     //http://www.cbr.ru/scripts/XML_daily.asp?date_req=02/03/2002
@@ -60,6 +82,9 @@ class Model: NSObject, XMLParserDelegate {
         let url = URL(string: strUrl)
         
         let task = URLSession.shared.dataTask(with: url!) { data, responce, error in
+            
+            var globalError: String?
+            
             if error == nil {
                 let path = NSSearchPathForDirectoriesInDomains(FileManager.SearchPathDirectory.libraryDirectory,
                                                                FileManager.SearchPathDomainMask.userDomainMask,
@@ -72,14 +97,22 @@ class Model: NSObject, XMLParserDelegate {
                     print("Файл загружен")
                     self.parseXML()
                 } catch {
+                    globalError = error.localizedDescription
                     print("Error when save data: " + error.localizedDescription)
                 }
             } else {
+                globalError = error?.localizedDescription
                 print("Error when loadXMLFile: " + error!.localizedDescription)
+            }
+            
+            if let globalError = globalError { NotificationCenter.default.post(name: NSNotification.Name(rawValue: "loadingXMLerror" ) ,
+                                                                               object: self,
+                                                                               userInfo: ["ErrorName" : globalError])
+
             }
         }
         
-        NotificationCenter.default.post(name: NSNotification.Name(rawValue: "startLoadingXML" ) , object: self)
+       NotificationCenter.default.post(name: NSNotification.Name(rawValue: "startLoadingXML" ) , object: self)
 
         task.resume()
     }
@@ -108,50 +141,23 @@ class Model: NSObject, XMLParserDelegate {
             }
         }
         
-        if elementName == "Valute" {
-            currentCurrency = Currency()
-        }
+        if elementName == "Valute" { currentCurrency = Currency() }
     }
     
-    func parser(_ parser: XMLParser, foundCharacters string: String) {
-        currentCharacters = string
-    }
+    func parser(_ parser: XMLParser, foundCharacters string: String) { currentCharacters = string }
     
     func parser(_ parser: XMLParser, didEndElement elementName: String, namespaceURI: String?, qualifiedName qName: String?) {
-        if elementName == "NumCode" {
-            currentCurrency?.numCode = currentCharacters
-        }
-        
-        if elementName == "CharCode" {
-            currentCurrency?.charCode = currentCharacters
-        }
-        
+        if elementName == "NumCode" { currentCurrency?.numCode = currentCharacters }
+        if elementName == "CharCode" { currentCurrency?.charCode = currentCharacters }
         if elementName == "Nominal" {
             currentCurrency?.nominal = currentCharacters
             currentCurrency?.nominalDouble = Double(currentCharacters.replacingOccurrences(of: ",", with: "."))
         }
-        
-        if elementName == "Name" {
-            currentCurrency?.name = currentCharacters
-        }
-        
+        if elementName == "Name" { currentCurrency?.name = currentCharacters }
         if elementName == "Value" {
             currentCurrency?.value = currentCharacters
             currentCurrency?.valueDouble = Double(currentCharacters.replacingOccurrences(of: ",", with: "."))
         }
-        
-        if elementName == "Valute" {
-            currencies.append(currentCurrency!)
-        }
+        if elementName == "Valute" { currencies.append(currentCurrency!) }
     }
 }
-
-/*
-<Valute ID="R01010">
-    <NumCode>036</NumCode>
-    <CharCode>AUD</CharCode>
-    <Nominal>1</Nominal>
-    <Name>¿‚ÒÚ‡ÎËÈÒÍËÈ ‰ÓÎÎ‡</Name>
-    <Value>16,0102</Value>
-</Valute>
-*/
