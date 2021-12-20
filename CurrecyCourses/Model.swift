@@ -78,6 +78,9 @@ class Model: NSObject, XMLParserDelegate {
                 print("Error when loadXMLFile: " + error!.localizedDescription)
             }
         }
+        
+        NotificationCenter.default.post(name: NSNotification.Name(rawValue: "startLoadingXML" ) , object: self)
+
         task.resume()
     }
     
