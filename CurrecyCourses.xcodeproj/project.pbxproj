@@ -13,8 +13,8 @@
 		E57EF91927706B1A00593DE1 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E57EF91727706B1A00593DE1 /* Main.storyboard */; };
 		E57EF91B27706B1C00593DE1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E57EF91A27706B1C00593DE1 /* Assets.xcassets */; };
 		E57EF91E27706B1C00593DE1 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E57EF91C27706B1C00593DE1 /* LaunchScreen.storyboard */; };
-		E57EF92627706B7700593DE1 /* XML_daily.asp.xml in Resources */ = {isa = PBXBuildFile; fileRef = E57EF92527706B7700593DE1 /* XML_daily.asp.xml */; };
 		E57EF92827706D2800593DE1 /* Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = E57EF92727706D2800593DE1 /* Model.swift */; };
+		E57EF92A2770747E00593DE1 /* data.xml in Resources */ = {isa = PBXBuildFile; fileRef = E57EF9292770747E00593DE1 /* data.xml */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -26,8 +26,8 @@
 		E57EF91A27706B1C00593DE1 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		E57EF91D27706B1C00593DE1 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		E57EF91F27706B1C00593DE1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		E57EF92527706B7700593DE1 /* XML_daily.asp.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = XML_daily.asp.xml; sourceTree = "<group>"; };
 		E57EF92727706D2800593DE1 /* Model.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Model.swift; sourceTree = "<group>"; };
+		E57EF9292770747E00593DE1 /* data.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = data.xml; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -68,7 +68,7 @@
 				E57EF91C27706B1C00593DE1 /* LaunchScreen.storyboard */,
 				E57EF91A27706B1C00593DE1 /* Assets.xcassets */,
 				E57EF91F27706B1C00593DE1 /* Info.plist */,
-				E57EF92527706B7700593DE1 /* XML_daily.asp.xml */,
+				E57EF9292770747E00593DE1 /* data.xml */,
 			);
 			path = CurrecyCourses;
 			sourceTree = "<group>";
@@ -132,7 +132,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				E57EF91E27706B1C00593DE1 /* LaunchScreen.storyboard in Resources */,
-				E57EF92627706B7700593DE1 /* XML_daily.asp.xml in Resources */,
+				E57EF92A2770747E00593DE1 /* data.xml in Resources */,
 				E57EF91B27706B1C00593DE1 /* Assets.xcassets in Resources */,
 				E57EF91927706B1A00593DE1 /* Main.storyboard in Resources */,
 			);

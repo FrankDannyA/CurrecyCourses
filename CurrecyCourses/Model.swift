@@ -29,12 +29,21 @@ class Currency {
 }
 
 class Model: NSObject {
+    
     static let shared = Model()
     
     var carrencies: [ Currency] = []
     
-    var pathForXML: URL? {
-        return nil
+    var pathForXML: String {
+        let path = NSSearchPathForDirectoriesInDomains(FileManager.SearchPathDirectory.libraryDirectory,
+                                                       FileManager.SearchPathDomainMask.userDomainMask,
+                                                       true)[0] + "/data.xml"
+        
+        if FileManager.default.fileExists(atPath: path) {
+            return path
+        } else {
+            return Bundle.main.path(forResource: "data", ofType: "xml")!
+        }
     }
     
     var urlForXML: URL? {
