@@ -51,6 +51,8 @@ class Model: NSObject, XMLParserDelegate {
     
     //распарсть XML и положить его в currencies: [Currency], отправить уведомление приложению о том что данные обновились
     func parseXML(){
+        currencies = []
+        
         let parser = XMLParser(contentsOf: urlForXML)
         parser?.delegate = self
         parser?.parse()
@@ -95,8 +97,6 @@ class Model: NSObject, XMLParserDelegate {
             currencies.append(currentCurrency!)
         }
     }
-    
-
 }
 
 /*
