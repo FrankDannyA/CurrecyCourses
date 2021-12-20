@@ -27,6 +27,7 @@ class Model: NSObject, XMLParserDelegate {
     var currencies: [ Currency] = []
     var currentCurrency: Currency?
     var currentCharacters: String = ""
+    var currentDate: String = ""
     
     var pathForXML: String {
         let path = NSSearchPathForDirectoriesInDomains(FileManager.SearchPathDirectory.libraryDirectory,
@@ -47,23 +48,29 @@ class Model: NSObject, XMLParserDelegate {
     //загрузка XML с cbr.ru и сохранение его в каталоге приложени
     //http://www.cbr.ru/scripts/XML_daily.asp?date_req=02/03/2002
     func loadXMLFiles(date: Date?) {
-        var strUrl = "http://www.cbr.ru/scripts/XML_daily.asp?date_req="
-        let url = URL(string: strUrl)
         
-        if date == nil {
+        var strUrl = "http://www.cbr.ru/scripts/XML_daily.asp?date_req="
+        
+        if date != nil {
             let dateFormater = DateFormatter()
             dateFormater.dateFormat = "dd/MM/yyyy"
-            strUrl += dateFormater.string(from: date!)
+            strUrl = strUrl + dateFormater.string(from: date!)
         }
+        
+        let url = URL(string: strUrl)
         
         let task = URLSession.shared.dataTask(with: url!) { data, responce, error in
             if error == nil {
                 let path = NSSearchPathForDirectoriesInDomains(FileManager.SearchPathDirectory.libraryDirectory,
                                                                FileManager.SearchPathDomainMask.userDomainMask,
                                                                true)[0] + "/data.xml"
+                
                 let urlForSave = URL(fileURLWithPath: path)
+                
                 do {
                     try data?.write(to: urlForSave)
+                    print("Файл загружен")
+                    self.parseXML()
                 } catch {
                     print("Error when save data: " + error.localizedDescription)
                 }
@@ -71,9 +78,7 @@ class Model: NSObject, XMLParserDelegate {
                 print("Error when loadXMLFile: " + error!.localizedDescription)
             }
         }
-        
         task.resume()
-        
     }
     
     //распарсть XML и положить его в currencies: [Currency], отправить уведомление приложению о том что данные обновились
@@ -83,10 +88,22 @@ class Model: NSObject, XMLParserDelegate {
         let parser = XMLParser(contentsOf: urlForXML)
         parser?.delegate = self
         parser?.parse()
+        
+        print("Данные обновлены")
+        
+        NotificationCenter.default.post(name: NSNotification.Name(rawValue: "dataRefreshed" ) , object: self)
     }
     
     
     func parser(_ parser: XMLParser, didStartElement elementName: String, namespaceURI: String?, qualifiedName qName: String?, attributes attributeDict: [String : String] = [:]) {
+        
+        if elementName == "ValCurs"{
+            if let currentDateString = attributeDict["Date"]{
+            let dateFormater = DateFormatter()
+            dateFormater.dateFormat = "dd.MM.yyyy"
+            currentDate = currentDateString
+            }
+        }
         
         if elementName == "Valute" {
             currentCurrency = Currency()

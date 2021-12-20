@@ -11,8 +11,15 @@ class CoursesTableViewController: UITableViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
-      
+        
+        NotificationCenter.default.addObserver(forName: NSNotification.Name(rawValue: "dataRefreshed" ),
+                                               object: nil,
+                                               queue: nil) { notification in
+            self.tableView.reloadData()
+            self.navigationItem.title = "Курсы за: \(Model.shared.currentDate)"
+        }
+        
+        navigationItem.title = "Курсы за: \(Model.shared.currentDate)"
     }
 
     // MARK: - Table view data source

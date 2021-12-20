@@ -42,6 +42,45 @@
             </objects>
             <point key="canvasLocation" x="1266.6666666666667" y="525.66964285714289"/>
         </scene>
+        <!--View Controller-->
+        <scene sceneID="Umc-Ef-YZz">
+            <objects>
+                <viewController id="NaE-1D-kZr" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="q6X-qP-u0m">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="dateAndTime" minuteInterval="1" translatesAutoresizingMaskIntoConstraints="NO" id="1XA-uU-zH6">
+                                <rect key="frame" x="0.0" y="171" width="414" height="216"/>
+                            </datePicker>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jSs-pj-aV4">
+                                <rect key="frame" x="20" y="447" width="374" height="60"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="60" id="380-fL-HzR"/>
+                                </constraints>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="gray" title="Показать курс" cornerStyle="medium"/>
+                            </button>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="qMk-nl-c4o"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="1XA-uU-zH6" firstAttribute="leading" secondItem="qMk-nl-c4o" secondAttribute="leading" id="4YA-dV-yDV"/>
+                            <constraint firstItem="1XA-uU-zH6" firstAttribute="top" secondItem="qMk-nl-c4o" secondAttribute="top" constant="115" id="DdM-hw-D7P"/>
+                            <constraint firstItem="jSs-pj-aV4" firstAttribute="leading" secondItem="qMk-nl-c4o" secondAttribute="leading" constant="20" id="bqe-ld-K1O"/>
+                            <constraint firstItem="jSs-pj-aV4" firstAttribute="top" secondItem="1XA-uU-zH6" secondAttribute="bottom" constant="60" id="grH-Gg-WBx"/>
+                            <constraint firstItem="qMk-nl-c4o" firstAttribute="trailing" secondItem="jSs-pj-aV4" secondAttribute="trailing" constant="20" id="hsw-7N-Z55"/>
+                            <constraint firstItem="1XA-uU-zH6" firstAttribute="trailing" secondItem="qMk-nl-c4o" secondAttribute="trailing" id="jrg-NV-QG5"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="UO1-Y7-sJ9">
+                        <barButtonItem key="leftBarButtonItem" title="Отмена" id="wVV-9K-2el"/>
+                    </navigationItem>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="LHb-Pc-fG4" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2175.36231884058" y="-1019.1964285714286"/>
+        </scene>
         <!--Курсы-->
         <scene sceneID="OVD-JI-Glw">
             <objects>
@@ -81,7 +120,14 @@
                             <outlet property="delegate" destination="JbD-Hw-w6X" id="9Ea-vS-opw"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Курсы" id="IUD-hV-a3d"/>
+                    <navigationItem key="navigationItem" title="Курсы" id="IUD-hV-a3d">
+                        <barButtonItem key="leftBarButtonItem" title="Выбрать Дату" id="6mM-L7-2qb">
+                            <connections>
+                                <segue destination="jMG-8w-AtL" kind="presentation" id="Lwo-Pp-Eym"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" systemItem="refresh" id="6WB-fX-KbD"/>
+                    </navigationItem>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="bjP-ox-F0g" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -124,6 +170,24 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="wIH-M6-GFS" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="356.52173913043481" y="525.66964285714289"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="uwc-Vf-WEJ">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="jMG-8w-AtL" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="I71-n0-yJP">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="56"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="NaE-1D-kZr" kind="relationship" relationship="rootViewController" id="KXb-Km-Rl5"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="u3v-ay-MQ4" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1266.6666666666667" y="-1019.1964285714286"/>
         </scene>
     </scenes>
     <resources>
