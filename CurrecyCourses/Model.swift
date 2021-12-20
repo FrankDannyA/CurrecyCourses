@@ -45,7 +45,34 @@ class Model: NSObject, XMLParserDelegate {
     }
     
     //загрузка XML с cbr.ru и сохранение его в каталоге приложени
-    func loadXMLFiles(data: Data) {
+    //http://www.cbr.ru/scripts/XML_daily.asp?date_req=02/03/2002
+    func loadXMLFiles(date: Date?) {
+        var strUrl = "http://www.cbr.ru/scripts/XML_daily.asp?date_req="
+        let url = URL(string: strUrl)
+        
+        if date == nil {
+            let dateFormater = DateFormatter()
+            dateFormater.dateFormat = "dd/MM/yyyy"
+            strUrl += dateFormater.string(from: date!)
+        }
+        
+        let task = URLSession.shared.dataTask(with: url!) { data, responce, error in
+            if error == nil {
+                let path = NSSearchPathForDirectoriesInDomains(FileManager.SearchPathDirectory.libraryDirectory,
+                                                               FileManager.SearchPathDomainMask.userDomainMask,
+                                                               true)[0] + "/data.xml"
+                let urlForSave = URL(fileURLWithPath: path)
+                do {
+                    try data?.write(to: urlForSave)
+                } catch {
+                    print("Error when save data: " + error.localizedDescription)
+                }
+            } else {
+                print("Error when loadXMLFile: " + error!.localizedDescription)
+            }
+        }
+        
+        task.resume()
         
     }
     

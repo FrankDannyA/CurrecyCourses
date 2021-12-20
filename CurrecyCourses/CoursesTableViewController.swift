@@ -33,7 +33,6 @@ class CoursesTableViewController: UITableViewController {
         
         cell.textLabel?.text = courseForCell.name
         cell.detailTextLabel?.text = courseForCell.value
-
         
         return cell
     }
