@@ -79,11 +79,12 @@ class CoursesTableViewController: UITableViewController {
 
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath)
+        let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath) as! CustomTableViewCell
         let courseForCell = Model.shared.currencies[indexPath.row]
         
-        cell.textLabel?.text = courseForCell.name
-        cell.detailTextLabel?.text = courseForCell.value
+        cell.initCell(currency: courseForCell)
+        cell.imageCell.layer.cornerRadius = 15
+        cell.imageCell.clipsToBounds = true
         
         return cell
     }

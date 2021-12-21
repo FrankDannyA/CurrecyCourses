@@ -18,6 +18,14 @@ class Currency {
     var value: String?
     var valueDouble: Double?
     
+    var imageFlag: UIImage? {
+        if let charCode = charCode {
+            return UIImage(named: charCode)
+        } else {
+            return UIImage(named: "XDR")
+        }
+    }
+    
     class func rouble() -> Currency {
         let r = Currency()
         r.charCode = "RUR"

@@ -42,15 +42,6 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Курсы за дату:" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LdH-DI-S54">
-                                <rect key="frame" x="32" y="161" width="350" height="29"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="350" id="0sn-CG-ok8"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" name="AppleSDGothicNeo-Regular" family="Apple SD Gothic Neo" pointSize="24"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                             <textField opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="249" fixedFrame="YES" enabled="NO" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="zfz-Gs-5lY">
                                 <rect key="frame" x="268" y="372" width="126" height="34"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -103,7 +94,6 @@
                         <outlet property="buttonFrom" destination="WHi-Si-AP4" id="gAD-od-SZh"/>
                         <outlet property="buttonTo" destination="J38-hz-Cmd" id="nVW-Oh-Dib"/>
                         <outlet property="fromTF" destination="aQ8-OT-SpL" id="xrK-UF-Dff"/>
-                        <outlet property="labelForDate" destination="LdH-DI-S54" id="e8H-qD-tun"/>
                         <outlet property="toTF" destination="zfz-Gs-5lY" id="iqc-4d-ST2"/>
                     </connections>
                 </viewController>
@@ -216,29 +206,53 @@
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <color key="sectionIndexBackgroundColor" systemColor="secondarySystemBackgroundColor"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="Cell" textLabel="e9R-I6-0FR" detailTextLabel="UEo-dd-B5K" style="IBUITableViewCellStyleValue1" id="4cA-Th-KmI">
-                                <rect key="frame" x="0.0" y="44.5" width="414" height="43.5"/>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="Cell" rowHeight="80" id="4cA-Th-KmI" customClass="CustomTableViewCell" customModule="CurrecyCourses" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="44.5" width="414" height="80"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="4cA-Th-KmI" id="XPK-Tq-MDI">
-                                    <rect key="frame" x="0.0" y="0.0" width="414" height="43.5"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="414" height="80"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="e9R-I6-0FR">
-                                            <rect key="frame" x="20" y="15" width="25" height="14.5"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                            <fontDescription key="fontDescription" type="system" pointSize="0.0"/>
+                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="LMV-R0-fUg">
+                                            <rect key="frame" x="36" y="19" width="70" height="42"/>
+                                            <constraints>
+                                                <constraint firstAttribute="width" constant="70" id="s4Y-9M-Q8c"/>
+                                            </constraints>
+                                        </imageView>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Курс" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ieh-Ql-JEu">
+                                            <rect key="frame" x="342" y="19" width="64" height="42"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Detail" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="UEo-dd-B5K">
-                                            <rect key="frame" x="361" y="15" width="33" height="14.5"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                            <fontDescription key="fontDescription" type="system" pointSize="0.0"/>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Название валюты" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jIv-cM-4YA">
+                                            <rect key="frame" x="114" y="19" width="220" height="42"/>
+                                            <constraints>
+                                                <constraint firstAttribute="width" constant="220" id="APT-sd-BdB"/>
+                                            </constraints>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                     </subviews>
+                                    <constraints>
+                                        <constraint firstItem="ieh-Ql-JEu" firstAttribute="baseline" secondItem="jIv-cM-4YA" secondAttribute="baseline" id="3W5-Re-fdY"/>
+                                        <constraint firstItem="ieh-Ql-JEu" firstAttribute="firstBaseline" secondItem="jIv-cM-4YA" secondAttribute="firstBaseline" id="BKY-EX-xxB"/>
+                                        <constraint firstItem="ieh-Ql-JEu" firstAttribute="leading" secondItem="jIv-cM-4YA" secondAttribute="trailing" constant="8" symbolic="YES" id="GBb-gr-8xj"/>
+                                        <constraint firstAttribute="trailingMargin" secondItem="ieh-Ql-JEu" secondAttribute="trailing" constant="-12" id="GP0-i5-LjV"/>
+                                        <constraint firstItem="jIv-cM-4YA" firstAttribute="top" secondItem="XPK-Tq-MDI" secondAttribute="topMargin" constant="8" id="JW1-2Z-Brw"/>
+                                        <constraint firstAttribute="bottomMargin" secondItem="jIv-cM-4YA" secondAttribute="bottom" constant="8" id="LBn-Nu-FAA"/>
+                                        <constraint firstItem="LMV-R0-fUg" firstAttribute="leading" secondItem="XPK-Tq-MDI" secondAttribute="leadingMargin" constant="16" id="VrJ-nx-BjG"/>
+                                        <constraint firstAttribute="bottomMargin" secondItem="LMV-R0-fUg" secondAttribute="bottom" constant="8" id="lN1-td-waj"/>
+                                        <constraint firstItem="LMV-R0-fUg" firstAttribute="top" secondItem="XPK-Tq-MDI" secondAttribute="topMargin" constant="8" id="nC2-sW-ZiA"/>
+                                        <constraint firstItem="jIv-cM-4YA" firstAttribute="leading" secondItem="LMV-R0-fUg" secondAttribute="trailing" constant="8" symbolic="YES" id="o7Y-RK-b1B"/>
+                                    </constraints>
                                 </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="courseInCell" destination="ieh-Ql-JEu" id="rZc-A9-pjb"/>
+                                    <outlet property="imageCell" destination="LMV-R0-fUg" id="vnK-gU-nW7"/>
+                                    <outlet property="nameCoursesInCell" destination="jIv-cM-4YA" id="Z78-px-Nke"/>
+                                </connections>
                             </tableViewCell>
                         </prototypes>
                         <connections>
@@ -267,7 +281,7 @@
         <scene sceneID="9cA-aj-ZqI">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="3Pz-rx-0xy" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Курсы" id="NgP-4c-epc"/>
+                    <tabBarItem key="tabBarItem" title="Курсы" image="dollarsign.square.fill" catalog="system" id="NgP-4c-epc"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="8oE-0K-0jS">
                         <rect key="frame" x="0.0" y="44" width="414" height="44"/>
@@ -286,7 +300,7 @@
         <scene sceneID="d0v-sR-njh">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="ol7-rz-6IX" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Конвертер" id="0PM-bd-dK0"/>
+                    <tabBarItem key="tabBarItem" title="Конвертер" image="move.3d" catalog="system" id="0PM-bd-dK0"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="gYt-mj-Cce">
                         <rect key="frame" x="0.0" y="44" width="414" height="44"/>
@@ -321,6 +335,8 @@
         </scene>
     </scenes>
     <resources>
+        <image name="dollarsign.square.fill" catalog="system" width="128" height="114"/>
+        <image name="move.3d" catalog="system" width="128" height="106"/>
         <namedColor name="AccentColor">
             <color red="0.0" green="0.46000000000000002" blue="0.89000000000000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>

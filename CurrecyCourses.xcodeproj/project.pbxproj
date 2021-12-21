@@ -18,6 +18,7 @@
 		E57EF92E2770A94900593DE1 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E57EF92D2770A94900593DE1 /* SettingsViewController.swift */; };
 		E57EF9302770C0E800593DE1 /* ConverterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E57EF92F2770C0E800593DE1 /* ConverterViewController.swift */; };
 		E57EF9322770D86C00593DE1 /* SelectCurrencyTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E57EF9312770D86C00593DE1 /* SelectCurrencyTableViewController.swift */; };
+		E57EF9342771C4CF00593DE1 /* CustomTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E57EF9332771C4CF00593DE1 /* CustomTableViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -34,6 +35,7 @@
 		E57EF92D2770A94900593DE1 /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		E57EF92F2770C0E800593DE1 /* ConverterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConverterViewController.swift; sourceTree = "<group>"; };
 		E57EF9312770D86C00593DE1 /* SelectCurrencyTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectCurrencyTableViewController.swift; sourceTree = "<group>"; };
+		E57EF9332771C4CF00593DE1 /* CustomTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTableViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -73,6 +75,7 @@
 				E57EF92D2770A94900593DE1 /* SettingsViewController.swift */,
 				E57EF92F2770C0E800593DE1 /* ConverterViewController.swift */,
 				E57EF9312770D86C00593DE1 /* SelectCurrencyTableViewController.swift */,
+				E57EF9332771C4CF00593DE1 /* CustomTableViewCell.swift */,
 				E57EF91727706B1A00593DE1 /* Main.storyboard */,
 				E57EF91C27706B1C00593DE1 /* LaunchScreen.storyboard */,
 				E57EF91A27706B1C00593DE1 /* Assets.xcassets */,
@@ -156,6 +159,7 @@
 			files = (
 				E57EF92C27707D6800593DE1 /* CoursesTableViewController.swift in Sources */,
 				E57EF9322770D86C00593DE1 /* SelectCurrencyTableViewController.swift in Sources */,
+				E57EF9342771C4CF00593DE1 /* CustomTableViewCell.swift in Sources */,
 				E57EF91227706B1A00593DE1 /* AppDelegate.swift in Sources */,
 				E57EF91427706B1A00593DE1 /* SceneDelegate.swift in Sources */,
 				E57EF92E2770A94900593DE1 /* SettingsViewController.swift in Sources */,
