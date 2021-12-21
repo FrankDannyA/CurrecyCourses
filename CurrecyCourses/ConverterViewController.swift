@@ -11,18 +11,19 @@ class ConverterViewController: UIViewController {
     
     
     @IBOutlet weak var labelForDate: UILabel!
+    
+    
+    
     @IBOutlet weak var fromTF: UITextField!
     @IBOutlet weak var toTF: UITextField!
-    @IBOutlet weak var fromButton: UIButton!
-    @IBOutlet weak var toButton: UIButton!
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        
-    }
+    @IBOutlet weak var buttonFrom: UIButton!
+    @IBOutlet weak var buttonTo: UIButton!
     
-    override func viewDidAppear(_ animated: Bool) {
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
         refreshButton()
+        textEditingChange(self)
     }
     
     @IBAction func textEditingChange(_ sender: Any) {
@@ -31,15 +32,30 @@ class ConverterViewController: UIViewController {
     }
     
     
-    @IBAction func fromButtonPress() {
+    @IBAction func buttonFromPush(_ sender: Any) {
+        let selectCurrency = storyboard?.instantiateViewController(withIdentifier: "selectedCurrencyNSID") as! UINavigationController
+        (selectCurrency.viewControllers[0] as! SelectCurrencyTableViewController).flagCurrency = .from
+        present(selectCurrency, animated: true)
+        
     }
     
-    @IBAction func toButtonPress() {
+    @IBAction func buttonToPushed(_ sender: Any) {
+        let selectCurrency = storyboard?.instantiateViewController(withIdentifier: "selectedCurrencyNSID") as! UINavigationController
+        (selectCurrency.viewControllers[0] as! SelectCurrencyTableViewController).flagCurrency = .to
+        present(selectCurrency, animated: true)
+        
     }
     
     func refreshButton() {
-        fromButton.setTitle(Model.shared.fromCurrency?.charCode, for: .normal)
-        toButton.setTitle(Model.shared.toCurrency?.charCode, for: .normal)
+        buttonFrom.setTitle(Model.shared.fromCurrency?.charCode, for: .normal)
+        buttonTo.setTitle(Model.shared.toCurrency?.charCode, for: .normal)
+        
+    }
+    
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        fromTF.endEditing(true)
+        refreshButton()
+        textEditingChange(self)
     }
     
 }
